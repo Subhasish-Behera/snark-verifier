@@ -104,20 +104,39 @@ pub fn estimate_gas(cost: Cost) -> usize {
 }
 
 /// Compile given Solidity `code` into deployment bytecode.
+//pub fn compile_solidity(code: &str) -> Vec<u8> {
+//    let mut cmd = Command::new("solc")
+//        .stdin(Stdio::piped())
+//        .stdout(Stdio::piped())
+//        .arg("--bin")
+//        .arg("-")
+//        .spawn()
+//        .unwrap();
+//    cmd.stdin.take().unwrap().write_all(code.as_bytes()).unwrap();
+//    let output = cmd.wait_with_output().unwrap().stdout;
+//    let binary = *split_by_ascii_whitespace(&output).last().unwrap();
+//    assert!(!binary.is_empty());
+//    hex::decode(binary).unwrap()
+//}
+//
 pub fn compile_solidity(code: &str) -> Vec<u8> {
-    let mut cmd = Command::new("solc")
-        .stdin(Stdio::piped())
-        .stdout(Stdio::piped())
-        .arg("--bin")
-        .arg("-")
-        .spawn()
-        .unwrap();
-    cmd.stdin.take().unwrap().write_all(code.as_bytes()).unwrap();
-    let output = cmd.wait_with_output().unwrap().stdout;
-    let binary = *split_by_ascii_whitespace(&output).last().unwrap();
-    assert!(!binary.is_empty());
-    hex::decode(binary).unwrap()
-}
+     let mut cmd = Command::new("solc")
+         .stdin(Stdio::piped())
+         .stdout(Stdio::piped())
+         .arg("--bin")
+         //.arg("--optimize")
+         //.arg("--optimize-runs")
+         //.arg("5000")    
+         //.arg("--via-ir")    
+         .arg("-")
+         .spawn()
+         .unwrap();
+     cmd.stdin.take().unwrap().write_all(code.as_bytes()).unwrap();
+     let output = cmd.wait_with_output().unwrap().stdout;
+     let binary = *split_by_ascii_whitespace(&output).last().unwrap();
+     assert!(!binary.is_empty());
+     hex::decode(binary).unwrap()
+ }
 
 fn split_by_ascii_whitespace(bytes: &[u8]) -> Vec<&[u8]> {
     let mut split = Vec::new();

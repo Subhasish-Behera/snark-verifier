@@ -45,7 +45,9 @@ use std::{
     path::Path,
 };
 
+
 pub mod aggregation;
+pub mod BfvSkEncryptionCircuit ;
 pub mod utils;
 
 // Poseidon parameters

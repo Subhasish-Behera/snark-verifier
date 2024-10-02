@@ -32,6 +32,9 @@ pub mod evm;
 #[cfg(feature = "loader_halo2")]
 pub mod halo2;
 
+pub mod poly;
+pub mod constants;
+
 pub const LIMBS: usize = 3;
 pub const BITS: usize = 88;
 

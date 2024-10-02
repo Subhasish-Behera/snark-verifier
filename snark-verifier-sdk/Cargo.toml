@@ -28,6 +28,7 @@ ark-std = { version = "0.3.0", features = ["print-trace"], optional = true }
 halo2-base = { git = "https://github.com/axiom-crypto/halo2-lib.git", tag = "v0.4.1-git", default-features = false }
 snark-verifier = { version = "=0.1.8", path = "../snark-verifier", default-features = false }
 getset = "0.1.2"
+axiom-eth = { git = "https://github.com/enricobottazzi/axiom-eth", default-features = false, features = ["halo2-axiom"] }
 
 # loader_evm
 ethereum-types = { version = "=0.14.1", default-features = false, features = ["std"], optional = true }
