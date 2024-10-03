@@ -1,6 +1,10 @@
+//use crate::constants::sk_enc_constants_1024_1x27_65537::{
+//      E_BOUND, K0IS, K1_BOUND, N, QIS, R1_BOUNDS, R2_BOUNDS, S_BOUND,
+//  };
 use crate::constants::sk_enc_constants_4096_2x55_65537::{
       E_BOUND, K0IS, K1_BOUND, N, QIS, R1_BOUNDS, R2_BOUNDS, S_BOUND,
   };
+
 
 use halo2_base::{
     halo2_proofs::{
@@ -277,15 +281,14 @@ impl <F:ScalarField, I> CircuitExt<F> for RlcCircuit<F, I>
   where                     
       I: RlcCircuitInstructions<F>,                                                               
   {                                                                              
-      fn instances(&self) -> Vec<Vec<F>> {
-          self.instances()  
-      }                                          
-                                                                                                                           
-     // fn instances(&self) ->  Vec<Vec<F>>{                                                                                                     
-     //     self.0.logic_inputs.instances()                                                                                                       
-     // }                
-                                                                                                                                                 
-      fn num_instance(&self) -> Vec<usize> {                                                                                                     
-          vec![1 as usize]                                                                                                       
-      }                                         
+      fn instances(&self) ->  Vec<Vec<F>>{                                                                                                     
+          self.0.logic_inputs.instances()                                                                                                       
+      }                
+      fn num_instance(&self) -> Vec<usize> {
+        let instances = self.instances(); 
+        instances.iter().map(Vec::len).collect() // Compute lengths of each inner vector
+      }
+     // fn num_instance(&self) -> Vec<usize> {                                                                                                     
+     //     vec![4 as usize]                                                                                                       
+     // }                                         
   }
