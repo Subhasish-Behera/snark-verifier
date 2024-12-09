@@ -126,7 +126,7 @@ pub fn compile_solidity(code: &str) -> Vec<u8> {
          .arg("--bin")
          .arg("--optimize")
          .arg("--optimize-runs")
-         .arg("1")    
+         .arg("100")    
          //.arg("--via-ir")    
          .arg("-")
          .spawn()
