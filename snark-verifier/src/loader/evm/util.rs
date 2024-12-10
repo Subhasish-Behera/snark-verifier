@@ -124,7 +124,7 @@ pub fn compile_solidity(code: &str) -> Vec<u8> {
          .stdin(Stdio::piped())
          .stdout(Stdio::piped())
          .arg("--bin")
-        //  .arg("--optimize")
+          .arg("--optimize")
         //  .arg("--optimize-runs")
         //  .arg("100")    
         //  .arg("--via-ir")    
